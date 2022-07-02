@@ -1,3 +1,28 @@
+# hook
+
+## useState 和 useReduce
+hook存储在fiber中，以链表形式存在
+
+数据结构类似于：
+`
+
+hook = {
+
+​	memorizedState , 
+
+​	next  //指向下一个hook
+
+}
+
+初次渲染 把hook的初始值存入fiber中，返回hook.memorizedState 和 dispatch函数
+
+之后渲染 把存入fiber的hook取出返回，
+
+dispatch函数需要利用闭包的特性 使当前上下文环境的fiber节点始终是当前调用hook时的fiber节点
+
+## useEffect
+
+
 # diff
 
 ## conciler
