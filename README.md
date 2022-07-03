@@ -20,7 +20,17 @@ hook = {
 
 dispatch函数需要利用闭包的特性 使当前上下文环境的fiber节点始终是当前调用hook时的fiber节点
 
-## useEffect
+## useEffect 和 useLayoutEffect 
+初次渲染 把useEffect的回调函数以及依赖 以链表形式存入hook（与useState类似）
+
+之后渲染 把之前存入的useEffect的回调函数以及依赖取出，对比依赖数组有没有发生变化，发生改变了把当前回调函数push到updateQueueOfEffect中
+
+commit阶段 遍历updateQueueOfEffect, 把callback 丢到最小堆中等待执行
+
+与useEffect不同 useLayoutEffect直接同步执行。
+
+
+
 
 
 # diff
